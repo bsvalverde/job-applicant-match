@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import openingRoutes from './openings';
+import candidateRoutes from './candidates';
 
 const routes = (): Router => {
   const router = Router();
 
-  router.use('/openings', openingRoutes());
+  router.use('/candidates', candidateRoutes());
 
   return router;
 };
