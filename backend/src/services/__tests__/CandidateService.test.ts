@@ -48,6 +48,11 @@ describe('services.CandidateService', () => {
       const experience = service.getExperienceFilter(5, 3);
       expect(experience).toEqual([]);
     });
+
+    it('Disregards negative values', () => {
+      const experience = service.getExperienceFilter(-1, -1);
+      expect(experience).toEqual(Object.values(Experience));
+    });
   });
 
   describe('CandidateService.list', () => {

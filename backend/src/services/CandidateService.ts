@@ -23,7 +23,7 @@ export default class CandidateService {
       minExperienceIndex = Math.min(minExperience, experience.length - 1);
     }
     let maxExperienceIndex;
-    if (maxExperience) {
+    if (maxExperience && maxExperience > 0) {
       maxExperienceIndex =
         minExperienceIndex === maxExperience
           ? minExperienceIndex + 1
