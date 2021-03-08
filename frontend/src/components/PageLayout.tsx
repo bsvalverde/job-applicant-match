@@ -22,15 +22,17 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   link: {
+    fontWeight: 'bold',
     color: 'inherit',
     textDecoration: 'none',
+    paddingTop: theme.spacing(0.5),
     '&:hover': {
-      borderBottom: [[1, 'solid', theme.palette.primary.main]],
+      borderTop: [[1, 'solid', theme.palette.secondary.main]],
     },
   },
   nav: {
     '& > *:not(:first-child)': {
-      marginLeft: theme.spacing(1),
+      marginLeft: theme.spacing(1.5),
     },
   },
 }));
@@ -43,7 +45,7 @@ const PageLayout = ({ children }: Props) => {
       <Box
         display="flex"
         justifyContent="space-between"
-        bgcolor="secondary.main"
+        bgcolor="primary.main"
         p={2}
       >
         <div className={classes.logo}>Logo</div>
@@ -53,19 +55,29 @@ const PageLayout = ({ children }: Props) => {
           alignItems="center"
           className={classes.nav}
         >
-          <Typography variant="body1" color="primary">
+          <Typography variant="body2" color="secondary">
             <Link to="/jobs" className={classes.link}>
               <FormattedMessage id="jobs" />
             </Link>
           </Typography>
-          <Typography variant="body1" color="primary">
+          <Typography variant="body2" color="secondary">
             <Link to="/applicants" className={classes.link}>
               <FormattedMessage id="applicants" />
             </Link>
           </Typography>
         </Box>
       </Box>
-      {children}
+      <Box
+        height="100%"
+        width="100%"
+        p={2}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        bgcolor="#F8F8F8"
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
