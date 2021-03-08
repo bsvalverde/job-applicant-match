@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 import { getIntlProps } from '../intl';
 import theme from '../theme';
-// import AppContainer from './AppContainer';
+import AppContainer from './AppContainer';
 
 const RootContainer = () => {
   const intlProps = getIntlProps();
@@ -15,10 +15,7 @@ const RootContainer = () => {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Box height="100%" width="100%">
-            {
-              // <AppContainer />
-              <p>test</p>
-            }
+            <AppContainer />
           </Box>
         </BrowserRouter>
       </ThemeProvider>
