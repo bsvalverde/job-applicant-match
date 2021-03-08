@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
+import ApplicantSearchContainer from '../applicants/containers/ApplicantSearchContainer';
 
 const RoutesContainer = () => {
   return (
@@ -7,7 +8,7 @@ const RoutesContainer = () => {
         <p>jobs</p>
       </Route>
       <Route path="/applicants">
-        <p>applicants</p>
+        <ApplicantSearchContainer />
       </Route>
       <Route path="/">
         <Redirect to="/applicants" />
