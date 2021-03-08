@@ -1,7 +1,8 @@
 //import errors from './errors';
+import applicants from './applicants';
 
 const messages = {
-  // ...errors,
+  ...applicants,
 };
 
 export default messages;
