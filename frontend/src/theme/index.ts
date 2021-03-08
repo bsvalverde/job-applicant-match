@@ -3,18 +3,18 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#FDD017',
+      main: '#41A9B9',
     },
     secondary: {
-      main: '#C21807',
+      main: '#6E2B77',
     },
     text: {
-      primary: '#4D4D4D',
-      secondary: '#979797',
+      primary: '#11273A',
+      secondary: '#FFFFFF',
     },
   },
   shape: {
-    borderRadius: 0,
+    borderRadius: 5,
   },
 });
 
