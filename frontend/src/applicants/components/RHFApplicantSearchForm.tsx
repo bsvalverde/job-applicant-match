@@ -1,5 +1,6 @@
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -159,11 +160,20 @@ const RHFApplicantSearchForm = ({ error, loading, onSubmit }: Props) => {
           </Box>
         </Box>
         <Box className={classes.submitButton}>
-          <IconButton type="submit">
-            <SearchIcon color="primary" />
-          </IconButton>
+          {loading ? (
+            <CircularProgress color="primary" size={44} />
+          ) : (
+            <IconButton type="submit">
+              <SearchIcon color="primary" />
+            </IconButton>
+          )}
         </Box>
       </form>
+      {error && (
+        <Typography color="error" variant="body2" align="center">
+          <FormattedMessage id={error} />
+        </Typography>
+      )}
     </Card>
   );
 };
