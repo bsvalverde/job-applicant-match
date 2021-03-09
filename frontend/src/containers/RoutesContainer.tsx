@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ApplicantSearchContainer from '../applicants/containers/ApplicantSearchContainer';
+import CandidateSearchContainer from '../candidates/containers/CandidateSearchContainer';
 
 const RoutesContainer = () => {
   return (
@@ -7,11 +7,11 @@ const RoutesContainer = () => {
       <Route path="/jobs">
         <p>jobs</p>
       </Route>
-      <Route path="/applicants">
-        <ApplicantSearchContainer />
+      <Route path="/candidates">
+        <CandidateSearchContainer />
       </Route>
       <Route path="/">
-        <Redirect to="/applicants" />
+        <Redirect to="/candidates" />
       </Route>
     </Switch>
   );

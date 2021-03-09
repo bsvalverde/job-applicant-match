@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RHFApplicantSearchForm = ({ error, loading, onSubmit }: Props) => {
+const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
   const classes = useStyles();
 
   const intl = useIntl();
@@ -178,4 +178,4 @@ const RHFApplicantSearchForm = ({ error, loading, onSubmit }: Props) => {
   );
 };
 
-export default RHFApplicantSearchForm;
+export default RHFCandidateSearchForm;

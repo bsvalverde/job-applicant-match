@@ -61,8 +61,8 @@ const PageLayout = ({ children }: Props) => {
             </Link>
           </Typography>
           <Typography variant="body2" color="secondary">
-            <Link to="/applicants" className={classes.link}>
-              <FormattedMessage id="applicants" />
+            <Link to="/candidates" className={classes.link}>
+              <FormattedMessage id="candidates" />
             </Link>
           </Typography>
         </Box>

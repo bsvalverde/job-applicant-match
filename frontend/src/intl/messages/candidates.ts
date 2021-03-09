@@ -1,5 +1,5 @@
 const messages = {
-  applicants: {
+  candidates: {
     pt: 'Candidatos',
   },
   cityField: {

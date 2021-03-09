@@ -1,8 +1,8 @@
-import applicants from './applicants';
+import candidates from './candidates';
 import errors from './errors';
 
 const messages = {
-  ...applicants,
+  ...candidates,
   ...errors,
 };
 
