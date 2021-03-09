@@ -21,7 +21,7 @@ const CandidateSearchContainer = () => {
     };
     console.log('formData', formData);
     try {
-      const candidates = await api.get('/candidates', { params });
+      const { data: candidates } = await api.get('/candidates', { params });
       console.log('candidates', candidates);
     } catch (e) {
       setError('genericError');

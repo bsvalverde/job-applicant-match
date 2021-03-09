@@ -18,16 +18,11 @@ export default class S3CandidateStore implements CandidateStore {
         );
       }
 
-      // .sort(
-      //   (a: Candidate, b: Candidate) =>
-      //     -a.experience.localeCompare(b.experience, undefined, {
-      //       numeric: true,
-      //     }),
-      // )
+      if (limit) {
+        candidates = candidates.slice(0, limit);
+      }
 
-      return candidates
-        .slice(0, limit)
-        .map((candidate: Candidate) => camelizeKeys(candidate));
+      return candidates.map((candidate: Candidate) => camelizeKeys(candidate));
     } catch (e) {
       throw e;
     }
