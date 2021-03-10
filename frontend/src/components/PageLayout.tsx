@@ -41,7 +41,7 @@ const PageLayout = ({ children }: Props) => {
   const classes = useStyles();
 
   return (
-    <Box height="100vh" display="flex" flexDirection="column">
+    <Box minHeight="100vh" display="flex" flexDirection="column">
       <Box
         display="flex"
         justifyContent="space-between"
