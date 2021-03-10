@@ -14,6 +14,15 @@ const messages = {
   experienceField: {
     pt: 'Experiência desejada (em anos)',
   },
+  noCandidatesToShow: {
+    pt: 'Nenhum candidato encontrado',
+  },
+  city: {
+    pt: 'Cidade',
+  },
+  experience: {
+    pt: 'Experiência',
+  },
 };
 
 export default messages;
