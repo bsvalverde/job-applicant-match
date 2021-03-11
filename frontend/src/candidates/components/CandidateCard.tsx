@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       "city experience"
       "technologies technologies"
     `,
+    gridTemplateColumns: '1fr 1fr',
     gap: `${theme.spacing(1)}px`,
   },
   city: {

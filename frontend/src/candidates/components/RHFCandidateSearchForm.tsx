@@ -38,14 +38,20 @@ const useStyles = makeStyles((theme) => ({
   form: {
     display: 'grid',
     gridGap: theme.spacing(1),
-    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
     alignItems: 'baseline',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+    },
   },
   cityField: {
-    gridColumn: 'span 2',
+    [theme.breakpoints.up('md')]: {
+      gridColumn: 'span 2',
+    },
   },
   experienceField: {
-    gridColumn: 'span 5',
+    [theme.breakpoints.up('md')]: {
+      gridColumn: 'span 5',
+    },
   },
   icon: {
     marginBottom: theme.spacing(0.5),
@@ -56,11 +62,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   submitButton: {
-    gridColumn: 'span 5',
+    [theme.breakpoints.up('md')]: {
+      gridColumn: 'span 5',
+    },
     marginLeft: 'auto',
   },
   technologyField: {
-    gridColumn: 'span 3',
+    [theme.breakpoints.up('md')]: {
+      gridColumn: 'span 3',
+    },
   },
 }));
 
