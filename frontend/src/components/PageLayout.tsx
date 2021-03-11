@@ -55,11 +55,11 @@ const PageLayout = ({ children }: Props) => {
           alignItems="center"
           className={classes.nav}
         >
-          <Typography variant="body2" color="secondary">
+          {/* <Typography variant="body2" color="secondary">
             <Link to="/jobs" className={classes.link}>
               <FormattedMessage id="jobs" />
             </Link>
-          </Typography>
+          </Typography> */}
           <Typography variant="body2" color="secondary">
             <Link to="/candidates" className={classes.link}>
               <FormattedMessage id="candidates" />

@@ -4,9 +4,9 @@ import CandidateSearchContainer from '../candidates/containers/CandidateSearchCo
 const RoutesContainer = () => {
   return (
     <Switch>
-      <Route path="/jobs">
+      {/* <Route path="/jobs">
         <p>jobs</p>
-      </Route>
+      </Route> */}
       <Route path="/candidates">
         <CandidateSearchContainer />
       </Route>
