@@ -37,7 +37,7 @@ const CandidateList = ({ candidates }: Props) => {
     );
   } else {
     content = candidates.map((candidate) => (
-      <CandidateCard candidate={candidate} />
+      <CandidateCard key={candidate.id} candidate={candidate} />
     ));
   }
 
