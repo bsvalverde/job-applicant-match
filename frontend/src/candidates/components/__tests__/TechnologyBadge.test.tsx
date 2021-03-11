@@ -6,7 +6,7 @@ import TechnologyBadge from '../TechnologyBadge';
 
 configure({ adapter: new Adapter() });
 
-describe('<TechnonlogyBadge />', () => {
+describe('<TechnologyBadge />', () => {
   let wrapper: ShallowWrapper;
 
   beforeEach(() => {

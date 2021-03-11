@@ -30,7 +30,7 @@ describe('<CandidateCard />', () => {
         wrapper.setProps({ candidate });
       });
 
-      it('Should not render a <TechnonlogyBadge />', () => {
+      it('Should not render a <TechnologyBadge />', () => {
         expect(wrapper.find(TechnologyBadge).exists()).toBeFalsy();
       });
     });

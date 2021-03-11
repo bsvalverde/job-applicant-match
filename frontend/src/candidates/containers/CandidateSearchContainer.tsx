@@ -35,16 +35,14 @@ const CandidateSearchContainer = () => {
   });
 
   return (
-    <>
-      <FormProvider {...methods}>
-        <CandidateSearchForm
-          error={error}
-          loading={loading}
-          onSubmit={onSubmit}
-        />
-        {candidates && <CandidateList candidates={candidates} />}
-      </FormProvider>
-    </>
+    <FormProvider {...methods}>
+      <CandidateSearchForm
+        error={error}
+        loading={loading}
+        onSubmit={onSubmit}
+      />
+      {candidates && <CandidateList candidates={candidates} />}
+    </FormProvider>
   );
 };
 
