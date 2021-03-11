@@ -13,12 +13,16 @@ export default interface Candidate {
 }
 
 export interface CandidateQuery {
-  limit?: number;
+  city?: string;
+  technology?: string;
   minExperience?: number;
   maxExperience?: number;
+  limit?: number;
 }
 
 export interface CandidateFilter {
+  city?: string;
+  technology?: string;
   experience?: Experience[];
   limit?: number;
 }

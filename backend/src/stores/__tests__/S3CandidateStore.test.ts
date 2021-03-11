@@ -10,21 +10,36 @@ describe('stores.S3CandidateStore', () => {
   describe('S3CandidateStore.list', () => {
     const candidate1 = {
       id: '1',
-      city: 'city1',
+      city: 'city1   ',
       experience: Experience.oneToTwo,
-      technologies: [],
+      technologies: [
+        {
+          name: 'tech1',
+          isMainTech: true,
+        },
+      ],
     };
     const candidate2 = {
       id: '2',
       city: 'city2',
       experience: Experience.sevenToEight,
-      technologies: [],
+      technologies: [
+        {
+          name: ' tech2',
+          isMainTech: true,
+        },
+      ],
     };
     const candidate3 = {
       id: '3',
-      city: 'city3',
+      city: '  city1',
       experience: Experience.twelvePlus,
-      technologies: [],
+      technologies: [
+        {
+          name: 'tech2',
+          isMainTech: true,
+        },
+      ],
     };
     const dummyData = {
       data: {
@@ -42,6 +57,20 @@ describe('stores.S3CandidateStore', () => {
     it('Returns only the candidates', async () => {
       const candidates = await store.list({});
       expect(candidates).toEqual(dummyData.data.candidates);
+    });
+
+    it('Returns only candidates from the desired city ignoring casing and extra spacings', async () => {
+      const candidates = await store.list({
+        city: 'cITy1   ',
+      });
+      expect(candidates).toEqual([candidate1, candidate3]);
+    });
+
+    it('Returns only candidates that have the desired technology ignoring casing and extra spacings', async () => {
+      const candidates = await store.list({
+        technology: '  teCH2  ',
+      });
+      expect(candidates).toEqual([candidate2, candidate3]);
     });
 
     it('Returns only candidates that have the desired experience', async () => {
