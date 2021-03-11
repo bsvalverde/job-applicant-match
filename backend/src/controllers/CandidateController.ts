@@ -15,13 +15,15 @@ export default class CandidateController {
   async list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const {
-        query: { limit, minExperience, maxExperience },
+        query: { city, technology, minExperience, maxExperience, limit },
       } = req;
 
       const candidates = await this.service.list({
-        limit: parseInt(limit as string),
+        city: city as string,
+        technology: technology as string,
         minExperience: parseInt(minExperience as string),
         maxExperience: parseInt(maxExperience as string),
+        limit: parseInt(limit as string),
       });
 
       res.json(candidates);

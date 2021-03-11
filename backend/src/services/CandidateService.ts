@@ -34,14 +34,16 @@ export default class CandidateService {
   }
 
   async list({
-    limit,
-    maxExperience,
+    city,
+    technology,
     minExperience,
+    maxExperience,
+    limit,
   }: CandidateQuery): Promise<Candidate[]> {
     let experience;
     if (maxExperience || minExperience) {
       experience = this.getExperienceFilter(minExperience, maxExperience);
     }
-    return this.store.list({ experience, limit });
+    return this.store.list({ city, technology, experience, limit });
   }
 }
