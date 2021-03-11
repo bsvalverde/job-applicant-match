@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     gridGap: theme.spacing(1),
     alignItems: 'baseline',
     [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+      gridTemplateColumns: 'repeat(5, 1fr)',
     },
   },
   cityField: {
