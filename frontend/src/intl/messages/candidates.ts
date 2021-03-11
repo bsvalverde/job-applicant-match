@@ -23,6 +23,12 @@ const messages = {
   experience: {
     pt: 'Experiência',
   },
+  xYear: {
+    pt: '{value} ano',
+  },
+  xYears: {
+    pt: '{value} anos',
+  },
 };
 
 export default messages;

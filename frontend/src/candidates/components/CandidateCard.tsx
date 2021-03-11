@@ -52,6 +52,8 @@ const CandidateCard = ({ candidate }: Props) => {
     return 0;
   });
 
+  const experienceValue = experience.split(' ')[0];
+
   return (
     <Card className={classes.root}>
       <div className={classes.city}>
@@ -64,7 +66,12 @@ const CandidateCard = ({ candidate }: Props) => {
         <Typography variant="body2" color="primary">
           <FormattedMessage id="experience" />
         </Typography>
-        <Typography>{experience}</Typography> {/** TODO fix display */}
+        <Typography>
+          <FormattedMessage
+            id={experienceValue === '0-1' ? 'xYear' : 'xYears'}
+            values={{ value: experienceValue }}
+          />
+        </Typography>
       </div>
       {Boolean(orderedTechnologies.length) && (
         <div className={classes.technologies}>
