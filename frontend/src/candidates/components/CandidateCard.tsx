@@ -65,11 +65,13 @@ const CandidateCard = ({ candidate }: Props) => {
         </Typography>
         <Typography>{experience}</Typography> {/** TODO fix display */}
       </div>
-      <div className={classes.technologies}>
-        {orderedTechnologies.map(({ name, isMainTech }, index) => (
-          <TechnologyBadge key={index} name={name} isMainTech={isMainTech} />
-        ))}
-      </div>
+      {Boolean(orderedTechnologies.length) && (
+        <div className={classes.technologies}>
+          {orderedTechnologies.map(({ name, isMainTech }, index) => (
+            <TechnologyBadge key={index} name={name} isMainTech={isMainTech} />
+          ))}
+        </div>
+      )}
     </Card>
   );
 };
