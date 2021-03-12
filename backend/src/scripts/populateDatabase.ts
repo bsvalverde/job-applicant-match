@@ -1,8 +1,9 @@
+import { camelizeKeys } from 'humps';
 import data from '../dummyData';
 import MongoCandidate from '../mongo/models/Candidate';
 
-export default () => {
-  MongoCandidate.deleteMany({});
+export default async () => {
+  await MongoCandidate.deleteMany({});
 
   const { candidates } = data;
 
@@ -12,7 +13,7 @@ export default () => {
       id,
       city,
       experience: mappedExperience,
-      technologies,
+      technologies: technologies.map((technology) => camelizeKeys(technology)),
     });
   });
 };
