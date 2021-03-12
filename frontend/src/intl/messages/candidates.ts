@@ -23,11 +23,8 @@ const messages = {
   experience: {
     pt: 'Experiência',
   },
-  xYear: {
-    pt: '{value} ano',
-  },
-  xYears: {
-    pt: '{value} anos',
+  experienceValue: {
+    pt: '{value, plural, =0 {{stringValue} ano} other {{stringValue} anos}}',
   },
 };
 

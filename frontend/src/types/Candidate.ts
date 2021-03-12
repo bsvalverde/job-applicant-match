@@ -6,6 +6,6 @@ interface Technology {
 export default interface Candidate {
   id: string;
   city: string;
-  experience: string;
+  experience: number;
   technologies: Technology[];
 }

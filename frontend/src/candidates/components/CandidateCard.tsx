@@ -52,7 +52,8 @@ const CandidateCard = ({ candidate }: Props) => {
     return 0;
   });
 
-  const experienceValue = experience.split(' ')[0];
+  const experienceValue =
+    experience === 12 ? '12+' : `${experience}-${experience + 1}`;
 
   return (
     <Card className={classes.root}>
@@ -68,8 +69,8 @@ const CandidateCard = ({ candidate }: Props) => {
         </Typography>
         <Typography>
           <FormattedMessage
-            id={experienceValue === '0-1' ? 'xYear' : 'xYears'}
-            values={{ value: experienceValue }}
+            id={'experienceValue'}
+            values={{ value: experience, stringValue: experienceValue }}
           />
         </Typography>
       </div>
