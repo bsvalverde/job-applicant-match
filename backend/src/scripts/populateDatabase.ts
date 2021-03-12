@@ -8,11 +8,10 @@ export default async () => {
   const { candidates } = data;
 
   candidates.forEach(({ id, city, experience, technologies }) => {
-    const mappedExperience = parseInt(experience.split('-')[0]);
     MongoCandidate.create({
       id,
       city,
-      experience: mappedExperience,
+      experience: parseInt(experience.split('-')[0]),
       technologies: technologies.map((technology) => camelizeKeys(technology)),
     });
   });
