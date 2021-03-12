@@ -11,20 +11,8 @@ export default class CandidateService {
     this.store = store;
   }
 
-  async list({
-    city,
-    technology,
-    minExperience,
-    maxExperience,
-    limit,
-  }: CandidateQuery): Promise<Candidate[]> {
-    return this.store.list({
-      city,
-      technology,
-      minExperience,
-      maxExperience,
-      limit,
-    });
+  async list(query: CandidateQuery): Promise<Candidate[]> {
+    return this.store.list(query);
   }
 
   async findMatches(): Promise<Candidate[]> {

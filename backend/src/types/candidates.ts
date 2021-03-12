@@ -17,14 +17,6 @@ export interface CandidateQuery {
   limit?: number;
 }
 
-export interface CandidateFilter {
-  city?: string;
-  technology?: string;
-  minExperience?: number;
-  maxExperience?: number;
-  limit?: number;
-}
-
 export interface CandidateStore {
-  list: (filter: CandidateFilter) => Promise<Candidate[]>;
+  list: (filter: CandidateQuery) => Promise<Candidate[]>;
 }
