@@ -26,12 +26,12 @@ export default class MongoCandidateStore implements CandidateStore {
       filter['technologies.name'] = new RegExp(`^${technology.trim()}$`, 'i');
     }
 
-    if (minExperience !== undefined || maxExperience !== undefined) {
+    if (Number.isInteger(minExperience) || Number.isInteger(maxExperience)) {
       filter.experience = {};
-      if (minExperience !== undefined) {
+      if (Number.isInteger(minExperience)) {
         filter.experience.$gte = minExperience;
       }
-      if (maxExperience !== undefined) {
+      if (Number.isInteger(maxExperience)) {
         filter.experience.$lte = maxExperience;
       }
     }
