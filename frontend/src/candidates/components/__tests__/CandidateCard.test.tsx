@@ -11,7 +11,7 @@ describe('<CandidateCard />', () => {
   const candidate = {
     id: '1',
     city: 'city1',
-    experience: '',
+    experience: 2,
     technologies: [],
   };
   const technologies = [
