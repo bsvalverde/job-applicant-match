@@ -38,19 +38,19 @@ describe('<CandidateList />', () => {
             {
               id: '1',
               city: 'city1',
-              experience: '',
+              experience: 1,
               technologies: [],
             },
             {
               id: '2',
               city: 'city2',
-              experience: '',
+              experience: 2,
               technologies: [],
             },
             {
               id: '3',
               city: 'city3',
-              experience: '',
+              experience: 3,
               technologies: [],
             },
           ],
