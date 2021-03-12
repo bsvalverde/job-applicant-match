@@ -19,19 +19,19 @@ export default class MongoCandidateStore implements CandidateStore {
     const filter: FilterQuery<Candidate> = {};
 
     if (city) {
-      filter.city = city;
+      filter.city = new RegExp(`^${city.trim()}$`, 'i');
     }
 
     if (technology) {
-      filter['technologies.name'] = new RegExp(`^${technology}$`, 'i');
+      filter['technologies.name'] = new RegExp(`^${technology.trim()}$`, 'i');
     }
 
-    if (minExperience || maxExperience) {
+    if (minExperience !== undefined || maxExperience !== undefined) {
       filter.experience = {};
-      if (minExperience) {
+      if (minExperience !== undefined) {
         filter.experience.$gte = minExperience;
       }
-      if (maxExperience) {
+      if (maxExperience !== undefined) {
         filter.experience.$lte = maxExperience;
       }
     }
