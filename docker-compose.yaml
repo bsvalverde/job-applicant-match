@@ -1,11 +1,11 @@
 version: "3.8"
 services:
-  # mongodb:
-  #   image: 'mongo'
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #     - ./api/data:/data/db
+  mongodb:
+    image: 'mongo'
+    ports:
+      - 27017:27017
+    volumes:
+      - ./api/data:/data/db
   backend:
     build:
       context: ./backend
@@ -14,8 +14,8 @@ services:
       - 3030:3030
     volumes:
       - ./backend/src:/app/src
-    # depends_on:
-    #   - mongodb
+    depends_on:
+      - mongodb
   frontend:
     build:
       context: ./frontend
