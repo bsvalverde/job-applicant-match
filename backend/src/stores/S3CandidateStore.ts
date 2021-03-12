@@ -9,7 +9,7 @@ export default class S3CandidateStore implements CandidateStore {
   async list({
     city,
     technology,
-    experience,
+    // experience,
     limit,
   }: CandidateFilter): Promise<Candidate[]> {
     try {
@@ -17,7 +17,7 @@ export default class S3CandidateStore implements CandidateStore {
         data: { candidates },
       } = await s3.get('');
 
-      if (city || technology || experience) {
+      if (city || technology) {
         candidates = candidates.filter((candidate: Candidate) => {
           if (
             city &&
@@ -33,9 +33,9 @@ export default class S3CandidateStore implements CandidateStore {
           ) {
             return false;
           }
-          if (experience && !experience.includes(candidate.experience)) {
-            return false;
-          }
+          // if (experience && !experience.includes(candidate.experience)) {
+          //   return false;
+          // }
           return true;
         });
       }

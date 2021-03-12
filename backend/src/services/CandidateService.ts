@@ -1,5 +1,4 @@
 import Candidate, { CandidateQuery, CandidateStore } from '../types/candidates';
-import Experience from '../types/experience';
 
 interface CandidateServiceConstructor {
   store: CandidateStore;
@@ -12,27 +11,6 @@ export default class CandidateService {
     this.store = store;
   }
 
-  getExperienceFilter(
-    minExperience?: number,
-    maxExperience?: number,
-  ): Experience[] {
-    const experience = Object.values(Experience);
-
-    let minExperienceIndex = 0;
-    if (minExperience && minExperience > 0) {
-      minExperienceIndex = Math.min(minExperience, experience.length - 1);
-    }
-    let maxExperienceIndex;
-    if (maxExperience && maxExperience > 0) {
-      maxExperienceIndex =
-        minExperienceIndex === maxExperience
-          ? minExperienceIndex + 1
-          : maxExperience;
-    }
-
-    return experience.slice(minExperienceIndex, maxExperienceIndex);
-  }
-
   async list({
     city,
     technology,
@@ -40,10 +18,28 @@ export default class CandidateService {
     maxExperience,
     limit,
   }: CandidateQuery): Promise<Candidate[]> {
-    let experience;
-    if (maxExperience || minExperience) {
-      experience = this.getExperienceFilter(minExperience, maxExperience);
-    }
-    return this.store.list({ city, technology, experience, limit });
+    return this.store.list({
+      city,
+      technology,
+      minExperience,
+      maxExperience,
+      limit,
+    });
+  }
+
+  async findMatches(): Promise<Candidate[]> {
+    const candidates = await this.store.list({});
+
+    const candidatesWithScore = candidates.map((candidate) => ({
+      candidate,
+      score: this.getScore(candidate),
+    }));
+    candidatesWithScore.sort();
+
+    return [];
+  }
+
+  getScore({}): number {
+    return 0;
   }
 }
