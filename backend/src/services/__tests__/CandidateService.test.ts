@@ -1,11 +1,10 @@
-import S3CandidateStore from '../../stores/S3CandidateStore';
-import Experience from '../../types/experience';
+import MongoCandidateStore from '../../stores/MongoCandidateStore';
 import CandidateService from '../CandidateService';
 
-jest.mock('../../stores/S3CandidateStore');
+jest.mock('../../stores/MongoCandidateStore');
 
 describe('services.CandidateService', () => {
-  const store = new S3CandidateStore();
+  const store = new MongoCandidateStore();
   const service = new CandidateService({ store });
 
   describe('CandidateService.list', () => {
@@ -28,7 +27,7 @@ describe('services.CandidateService', () => {
       expect(store.list).toHaveBeenCalledWith({
         city,
         technology,
-        experience: [Experience.elevenToTwelve, Experience.twelvePlus],
+        minExperience,
         limit,
       });
     });
