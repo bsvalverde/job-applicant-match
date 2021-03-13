@@ -36,19 +36,19 @@ describe('<CandidateList />', () => {
         wrapper.setProps({
           candidates: [
             {
-              id: '1',
+              _id: '1',
               city: 'city1',
               experience: 1,
               technologies: [],
             },
             {
-              id: '2',
+              _id: '2',
               city: 'city2',
               experience: 2,
               technologies: [],
             },
             {
-              id: '3',
+              _id: '3',
               city: 'city3',
               experience: 3,
               technologies: [],

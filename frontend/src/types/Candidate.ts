@@ -4,7 +4,7 @@ interface Technology {
 }
 
 export default interface Candidate {
-  id: string;
+  _id: string;
   city: string;
   experience: number;
   technologies: Technology[];

@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 describe('<CandidateCard />', () => {
   let wrapper: ShallowWrapper;
   const candidate = {
-    id: '1',
+    _id: '1',
     city: 'city1',
     experience: 2,
     technologies: [],
