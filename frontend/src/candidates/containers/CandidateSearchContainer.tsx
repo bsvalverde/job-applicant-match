@@ -24,7 +24,7 @@ const CandidateSearchContainer = () => {
       limit: 5,
     };
     try {
-      const { data: candidates } = await api.get('/candidates', { params });
+      const { data: candidates } = await api.get('/candidates/match', { params });
       setCandidates(candidates);
     } catch (e) {
       setCandidates(null);
