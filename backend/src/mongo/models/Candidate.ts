@@ -31,8 +31,7 @@ const candidateSchema = new BaseSchema({
     max: 12,
     required: true,
   },
-  technologies: {},
-  items: {
+  technologies: {
     type: [technologySchema],
     required: true,
   },
