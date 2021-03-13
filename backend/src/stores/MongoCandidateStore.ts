@@ -7,7 +7,7 @@ export default class MongoCandidateStore implements CandidateStore {
     return MongoCandidate.find({
       active: true,
       ...this.mapQueryToFilter(query),
-    }).limit(limit || 0);
+    }).limit(limit || Infinity);
   }
 
   mapQueryToFilter({
