@@ -7,8 +7,7 @@ export default interface Job {
 
 export interface JobQuery {
   city?: string;
-  minExperience?: number;
-  maxExperience?: number;
+  experience?: number;
   technologies?: string[];
   limit?: number;
 }
