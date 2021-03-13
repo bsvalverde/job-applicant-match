@@ -13,7 +13,7 @@ export interface CandidateQuery {
   city?: string;
   minExperience?: number;
   maxExperience?: number;
-  technologies?: string | string[];
+  technologies?: string[];
   limit?: number;
 }
 

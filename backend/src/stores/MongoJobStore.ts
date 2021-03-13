@@ -22,7 +22,7 @@ export default class MongoJobStore implements JobStore {
       filter.city = new RegExp(`^${normalizeString(city)}$`, 'i');
     }
 
-    if (experience || experience === 0) {
+    if (Number.isInteger(experience)) {
       filter.minExperience = { $lte: experience };
       filter.maxExperience = { $gte: experience };
     }

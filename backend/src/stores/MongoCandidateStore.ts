@@ -1,6 +1,7 @@
 import { FilterQuery } from 'mongoose';
 import MongoCandidate from '../mongo/models/Candidate';
 import Candidate, { CandidateQuery, CandidateStore } from '../types/candidates';
+import { normalizeString } from '../utils/stringUtils';
 
 export default class MongoCandidateStore implements CandidateStore {
   async list({ limit, ...query }: CandidateQuery): Promise<Candidate[]> {
@@ -19,7 +20,7 @@ export default class MongoCandidateStore implements CandidateStore {
     const filter: FilterQuery<Candidate> = {};
 
     if (city) {
-      filter.city = new RegExp(`^${city.trim()}$`, 'i');
+      filter.city = new RegExp(`^${normalizeString(city)}$`, 'i');
     }
 
     if (Number.isInteger(minExperience) || Number.isInteger(maxExperience)) {
@@ -33,12 +34,9 @@ export default class MongoCandidateStore implements CandidateStore {
     }
 
     if (technologies) {
-      const techArray = Array.isArray(technologies)
-        ? technologies
-        : [technologies];
       filter['technologies.name'] = {
-        $in: techArray.map(
-          (technology) => new RegExp(`^${technology.trim()}$`, 'i'),
+        $in: technologies.map(
+          (technology) => new RegExp(`^${normalizeString(technology)}$`, 'i'),
         ),
       };
     }
