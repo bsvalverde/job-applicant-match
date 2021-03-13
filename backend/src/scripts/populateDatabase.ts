@@ -9,23 +9,23 @@ export default async () => {
 
   const { candidates, jobs } = data;
 
-  candidates.forEach(({ id, city, experience, technologies }) => {
-    MongoCandidate.create({
+  for (const { id, city, experience, technologies } of candidates) {
+    await MongoCandidate.create({
       id,
       city,
       experience: parseInt(experience.split('-')[0]),
       technologies: technologies.map((technology) => camelizeKeys(technology)),
     });
-  });
+  }
 
-  jobs.forEach(({ id, city, technologies, experience }) => {
+  for (const { id, city, technologies, experience } of jobs) {
     const [minExperience, maxExperience] = experience.split(' ')[0].split('-');
-    MongoJob.create({
+    await MongoJob.create({
       id,
       city,
       minExperience,
       maxExperience,
       technologies,
     });
-  });
+  }
 };

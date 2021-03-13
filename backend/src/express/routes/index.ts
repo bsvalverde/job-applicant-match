@@ -10,8 +10,12 @@ const routes = (): Router => {
   router.use('/jobs', jobRoutes());
 
   router.post('/populateDatabase', async (req, res, next) => {
-    await populateDatabase();
-    res.sendStatus(200);
+    try {
+      await populateDatabase();
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
   });
 
   return router;

@@ -1,4 +1,4 @@
-import Job, { JobQuery, JobStore } from '../types/Jobs';
+import Job, { JobQuery, JobStore } from '../types/jobs';
 
 interface JobServiceConstructor {
   store: JobStore;

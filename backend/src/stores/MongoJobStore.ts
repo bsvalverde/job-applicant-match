@@ -1,6 +1,6 @@
 import { FilterQuery } from 'mongoose';
 import MongoJob from '../mongo/models/Job';
-import Job, { JobQuery, JobStore } from '../types/Jobs';
+import Job, { JobQuery, JobStore } from '../types/jobs';
 import { normalizeString } from '../utils/stringUtils';
 
 export default class MongoJobStore implements JobStore {

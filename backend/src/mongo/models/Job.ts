@@ -10,7 +10,7 @@ const jobSchema = new BaseSchema({
     ...trimmedString,
     required: true,
   },
-  minexperience: {
+  minExperience: {
     ...experience,
     required: true,
   },
