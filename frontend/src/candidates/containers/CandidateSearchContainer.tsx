@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import api from '../../api';
-import Candidate from '../../types/Candidate';
+import Candidate from '../../types/candidates';
 import CandidateList from '../components/CandidateList';
 import CandidateSearchForm from '../components/RHFCandidateSearchForm';
 

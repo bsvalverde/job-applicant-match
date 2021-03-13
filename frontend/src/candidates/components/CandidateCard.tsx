@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Candidate from '../../types/Candidate';
+import Candidate from '../../types/candidates';
 import TechnologyBadge from './TechnologyBadge';
 
 interface Props {
