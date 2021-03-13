@@ -60,7 +60,6 @@ const MultiSelect = (props: Props) => {
 
   return (
     <Select
-      // className={clsx(classes.root, className)}
       {...props}
       styles={customStyles}
     />

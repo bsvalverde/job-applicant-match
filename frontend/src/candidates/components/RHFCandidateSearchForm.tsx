@@ -7,14 +7,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { availableCities } from '../utils';
+import MultiSelect from '../../components/MultiSelect';
+import { availableCities, availableTechnologies } from '../utils';
 
 interface Props {
   error: string;
@@ -24,9 +24,14 @@ interface Props {
 
 interface FormInput {
   city: string;
-  technology: string;
+  technologies: string[];
   minExperience: number;
   maxExperience: number;
+}
+
+interface MultiSelectOption {
+  value: string;
+  label: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -87,6 +92,12 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
   const minExperience = watch('minExperience');
   const maxExperience = watch('maxExperience');
 
+  const mapStringsToMultiSelectOptions = (strings: string[]) =>
+    strings.map((string) => ({ value: string, label: string }));
+
+  const mapMultiSelectOptionsToStrings = (options: MultiSelectOption[]) =>
+    options.map((option) => option.value);
+
   return (
     <Card className={classes.root}>
       <form className={classes.form} onSubmit={onSubmit}>
@@ -94,9 +105,9 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
           name="city"
           control={control}
           defaultValue=""
-          className={classes.cityField}
-          as={
+          render={({ value, onChange }) => (
             <Select
+              className={classes.cityField}
               fullWidth
               displayEmpty
               disableUnderline={true}
@@ -109,6 +120,8 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
                 </InputAdornment>
               }
               classes={{ select: classes.select }}
+              value={value}
+              onChange={onChange}
             >
               <MenuItem value="">
                 <FormattedMessage id="cityField" />
@@ -119,31 +132,37 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
                 </MenuItem>
               ))}
             </Select>
-          }
+          )}
         />
         <Controller
-          name="technology"
+          name="technologies"
           control={control}
           defaultValue=""
-          className={classes.technologyField}
           rules={{ required: true }}
-          as={
-            <TextField
-              fullWidth
-              label={intl.formatMessage({ id: 'technologyField' })}
-              placeholder={intl.formatMessage({ id: 'technologyPlaceholder' })}
-              margin="none"
-              InputProps={{
-                disableUnderline: true,
-              }}
-              error={Boolean(errors['technology'])}
-              helperText={
-                errors['technology']
-                  ? intl.formatMessage({ id: 'requiredField' })
-                  : ''
-              }
-            />
-          }
+          render={({ value, onChange }) => (
+            <div className={classes.technologyField}>
+              <MultiSelect
+                options={mapStringsToMultiSelectOptions(availableTechnologies)}
+                isMulti
+                placeholder={intl.formatMessage({
+                  id: 'technologyPlaceholder',
+                })}
+                value={mapStringsToMultiSelectOptions(value || [])}
+                onChange={(options) => {
+                  onChange(
+                    mapMultiSelectOptionsToStrings(
+                      options as MultiSelectOption[],
+                    ),
+                  );
+                }}
+              />
+              {Boolean(errors['technologies']) && (
+                <Typography color="error" variant="caption">
+                  <FormattedMessage id="requiredField" />
+                </Typography>
+              )}
+            </div>
+          )}
         />
         <Box className={classes.experienceField} mt={1}>
           <Typography variant="body1" color="primary">
