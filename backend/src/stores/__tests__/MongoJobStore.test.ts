@@ -6,7 +6,7 @@ describe('stores.MongoJobStore', () => {
 
   describe('MongoJobStore.mapQueryToFilter', () => {
     const city = 'city   ';
-    const experience = 3;
+    const experience = 0;
     const technology1 = ' tech1 ';
     const technology2 = '  tech2';
 
