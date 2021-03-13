@@ -1,5 +1,4 @@
 import Candidate, { CandidateQuery, CandidateStore } from '../types/candidates';
-import { normalizeString } from '../utils/stringUtils';
 
 interface CandidateServiceConstructor {
   store: CandidateStore;
@@ -16,56 +15,19 @@ export default class CandidateService {
     return this.store.list(query);
   }
 
-  async match(query: CandidateQuery): Promise<Candidate[]> {
+  async findMatches(): Promise<Candidate[]> {
     const candidates = await this.store.list({});
 
     const candidatesWithScore = candidates.map((candidate) => ({
       candidate,
-      score: this.getScore({ candidate, query }),
+      score: this.getScore(candidate),
     }));
-    candidatesWithScore.sort((a, b) => b.score - a.score);
+    candidatesWithScore.sort();
 
-    return candidatesWithScore
-      .map(({ candidate }) => candidate)
-      .slice(0, query.limit || Infinity);
+    return [];
   }
 
-  getScore({
-    candidate,
-    query: { city, minExperience, maxExperience, technologies },
-  }: {
-    candidate: Candidate;
-    query: CandidateQuery;
-  }): number {
-    let score = 0;
-
-    if (city && normalizeString(city) === normalizeString(candidate.city)) {
-      score += 1;
-    }
-
-    if (minExperience && minExperience <= candidate.experience) {
-      score += 1;
-    }
-
-    if (maxExperience && maxExperience >= candidate.experience) {
-      score += 1;
-    }
-
-    if (technologies) {
-      const techArray = (Array.isArray(technologies)
-        ? technologies
-        : [technologies]
-      ).map((technology) => normalizeString(technology));
-      candidate.technologies.forEach(({ name, isMainTech }) => {
-        if (techArray.includes(normalizeString(name))) {
-          score += 1;
-          if (isMainTech) {
-            score += 1;
-          }
-        }
-      });
-    }
-
-    return score;
+  getScore({}): number {
+    return 0;
   }
 }
