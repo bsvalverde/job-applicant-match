@@ -40,7 +40,7 @@ export default class CandidateService {
     let score = 0;
 
     if (city && normalizeString(city) === normalizeString(candidate.city)) {
-      score += 2;
+      score += 1;
     }
 
     if (minExperience && minExperience <= candidate.experience) {
