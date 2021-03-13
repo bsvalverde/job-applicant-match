@@ -11,6 +11,7 @@ const routes = (): Router => {
   const candidateController = new CandidateController({ service });
 
   router.get('/', candidateController.list.bind(candidateController));
+  router.get('/match', candidateController.match.bind(candidateController));
 
   return router;
 };
