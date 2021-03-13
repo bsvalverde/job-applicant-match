@@ -42,6 +42,7 @@ const MultiSelect = (props: Props) => {
     multiValueLabel: (provided: any) => ({
       ...provided,
       color: theme.palette.primary.main,
+      fontFamily: theme.typography.fontFamily,
     }),
     multiValueRemove: (provided: any) => ({
       ...provided,

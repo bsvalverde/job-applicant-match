@@ -5,7 +5,8 @@ describe('stores.MongoCandidateStore', () => {
 
   describe('MongoCandidateStore.mapQueryToFilter', () => {
     const city = 'city   ';
-    const technology = '  tech ';
+    const technology1 = ' tech1 ';
+    const technology2 = '  tech2';
     const minExperience = 0;
     const maxExperience = 5;
 
@@ -14,10 +15,26 @@ describe('stores.MongoCandidateStore', () => {
       expect(filter).toEqual({ city: new RegExp(`^${city.trim()}$`, 'i') });
     });
 
-    it('Returns a filter with the trimmed technology in a regex', () => {
-      const filter = store.mapQueryToFilter({ technology });
+    it('Returns a filter with the trimmed technology in a regex array', () => {
+      const filter = store.mapQueryToFilter({ technologies: technology1 });
       expect(filter).toEqual({
-        'technologies.name': new RegExp(`^${technology.trim()}$`, 'i'),
+        'technologies.name': {
+          $in: [new RegExp(`^${technology1.trim()}$`, 'i')],
+        },
+      });
+    });
+
+    it('Returns a filter with all the trimmed technologies in a regex array', () => {
+      const filter = store.mapQueryToFilter({
+        technologies: [technology1, technology2],
+      });
+      expect(filter).toEqual({
+        'technologies.name': {
+          $in: [
+            new RegExp(`^${technology1.trim()}$`, 'i'),
+            new RegExp(`^${technology2.trim()}$`, 'i'),
+          ],
+        },
       });
     });
 
@@ -34,6 +51,6 @@ describe('stores.MongoCandidateStore', () => {
     it('Returns an empty filter if no params are sent', () => {
       const filter = store.mapQueryToFilter({});
       expect(filter).toEqual({});
-    })
+    });
   });
 });
