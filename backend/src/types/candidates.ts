@@ -11,9 +11,9 @@ export default interface Candidate {
 
 export interface CandidateQuery {
   city?: string;
-  technologies?: string | string[];
   minExperience?: number;
   maxExperience?: number;
+  technologies?: string | string[];
   limit?: number;
 }
 
