@@ -12,7 +12,7 @@ export default class MongoCandidateStore implements CandidateStore {
 
   mapQueryToFilter({
     city,
-    technology,
+    technologies,
     minExperience,
     maxExperience,
   }: CandidateQuery): FilterQuery<Candidate> {
@@ -22,8 +22,15 @@ export default class MongoCandidateStore implements CandidateStore {
       filter.city = new RegExp(`^${city.trim()}$`, 'i');
     }
 
-    if (technology) {
-      filter['technologies.name'] = new RegExp(`^${technology.trim()}$`, 'i');
+    if (technologies) {
+      const techArray = Array.isArray(technologies)
+        ? technologies
+        : [technologies];
+      filter['technologies.name'] = {
+        $in: techArray.map(
+          (technology) => new RegExp(`^${technology.trim()}$`, 'i'),
+        ),
+      };
     }
 
     if (Number.isInteger(minExperience) || Number.isInteger(maxExperience)) {

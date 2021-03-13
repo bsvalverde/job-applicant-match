@@ -15,18 +15,18 @@ describe('services.CandidateService', () => {
 
     it('Calls store.list with the correct parameters', () => {
       const city = 'city';
-      const technology = 'tech';
+      const technologies = 'tech';
       const minExperience = 11;
       const limit = 3;
       service.list({
         city,
-        technology,
+        technologies,
         minExperience,
         limit,
       });
       expect(store.list).toHaveBeenCalledWith({
         city,
-        technology,
+        technologies,
         minExperience,
         limit,
       });
