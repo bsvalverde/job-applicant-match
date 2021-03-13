@@ -12,14 +12,24 @@ export default class MongoCandidateStore implements CandidateStore {
 
   mapQueryToFilter({
     city,
-    technologies,
     minExperience,
     maxExperience,
+    technologies,
   }: CandidateQuery): FilterQuery<Candidate> {
     const filter: FilterQuery<Candidate> = {};
 
     if (city) {
       filter.city = new RegExp(`^${city.trim()}$`, 'i');
+    }
+
+    if (Number.isInteger(minExperience) || Number.isInteger(maxExperience)) {
+      filter.experience = {};
+      if (Number.isInteger(minExperience)) {
+        filter.experience.$gte = minExperience;
+      }
+      if (Number.isInteger(maxExperience)) {
+        filter.experience.$lte = maxExperience;
+      }
     }
 
     if (technologies) {
@@ -31,16 +41,6 @@ export default class MongoCandidateStore implements CandidateStore {
           (technology) => new RegExp(`^${technology.trim()}$`, 'i'),
         ),
       };
-    }
-
-    if (Number.isInteger(minExperience) || Number.isInteger(maxExperience)) {
-      filter.experience = {};
-      if (Number.isInteger(minExperience)) {
-        filter.experience.$gte = minExperience;
-      }
-      if (Number.isInteger(maxExperience)) {
-        filter.experience.$lte = maxExperience;
-      }
     }
 
     return filter;
