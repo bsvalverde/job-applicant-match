@@ -105,12 +105,12 @@ describe('services.CandidateService', () => {
       ],
     };
 
-    it('Gives a point if the city is the same', () => {
+    it('Gives two points if the city is the same', () => {
       const score = service.getScore({
         candidate,
         query: { city: '  cITy' },
       });
-      expect(score).toBe(1);
+      expect(score).toBe(2);
     });
 
     it('Gives no points if the city is different', () => {
