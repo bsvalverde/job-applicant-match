@@ -13,7 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
-import MultiSelect from '../../components/MultiSelect';
+import MultiSelect from '../../components/UI/MultiSelect';
 import { availableCities, availableTechnologies } from '../utils';
 
 interface Props {
