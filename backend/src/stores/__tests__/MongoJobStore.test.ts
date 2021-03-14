@@ -6,6 +6,7 @@ describe('stores.MongoJobStore', () => {
 
   describe('MongoJobStore.mapQueryToFilter', () => {
     const city = 'city   ';
+    const remote = false;
     const experience = 0;
     const technology1 = ' tech1 ';
     const technology2 = '  tech2';
@@ -14,6 +15,13 @@ describe('stores.MongoJobStore', () => {
       const filter = store.mapQueryToFilter({ city });
       expect(filter).toEqual({
         city: new RegExp(`^${normalizeString(city)}$`, 'i'),
+      });
+    });
+
+    it('Returns a filter with the correct remote requirement', () => {
+      const filter = store.mapQueryToFilter({ remote });
+      expect(filter).toEqual({
+        remote,
       });
     });
 
