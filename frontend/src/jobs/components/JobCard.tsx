@@ -23,12 +23,17 @@ const useStyles = makeStyles((theme) => ({
     gap: `${theme.spacing(1)}px`,
   },
   city: {
+    '& > :not(:last-child)': {
+      marginRight: theme.spacing(1),
+    },
+  },
+  cityArea: {
     gridArea: 'city',
   },
-  experience: {
+  experienceArea: {
     gridArea: 'experience',
   },
-  technologies: {
+  technologiesArea: {
     gridArea: 'technologies',
     display: 'flex',
     gap: `${theme.spacing(1)}px`,
@@ -45,12 +50,12 @@ const JobCard = ({ job }: Props) => {
 
   return (
     <Card className={classes.root}>
-      <div className={classes.city}>
+      <div className={classes.cityArea}>
         <Typography variant="body2" color="primary">
           <FormattedMessage id="city" />
         </Typography>
-        <Typography>
-          {city}{' '}
+        <div className={classes.city}>
+          {city && <Typography component="span">{city}</Typography>}
           {isRemote && (
             <Chip
               label={<FormattedMessage id="remote" />}
@@ -59,9 +64,9 @@ const JobCard = ({ job }: Props) => {
               size="small"
             />
           )}
-        </Typography>
+        </div>
       </div>
-      <div className={classes.experience}>
+      <div className={classes.experienceArea}>
         <Typography variant="body2" color="primary">
           <FormattedMessage id="experience" />
         </Typography>
@@ -73,7 +78,7 @@ const JobCard = ({ job }: Props) => {
         </Typography>
       </div>
       {Boolean(orderedTechnologies.length) && (
-        <div className={classes.technologies}>
+        <div className={classes.technologiesArea}>
           {orderedTechnologies.map((technology, index) => (
             <TechnologyBadge key={index} name={technology} />
           ))}

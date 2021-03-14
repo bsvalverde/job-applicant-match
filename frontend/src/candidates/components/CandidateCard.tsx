@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: '1fr 1fr',
     gap: `${theme.spacing(1)}px`,
   },
-  city: {
+  cityArea: {
     gridArea: 'city',
   },
-  experience: {
+  experienceArea: {
     gridArea: 'experience',
   },
-  technologies: {
+  technologiesArea: {
     gridArea: 'technologies',
     display: 'flex',
     gap: `${theme.spacing(1)}px`,
@@ -57,13 +57,13 @@ const CandidateCard = ({ candidate }: Props) => {
 
   return (
     <Card className={classes.root}>
-      <div className={classes.city}>
+      <div className={classes.cityArea}>
         <Typography variant="body2" color="primary">
           <FormattedMessage id="city" />
         </Typography>
         <Typography>{city}</Typography>
       </div>
-      <div className={classes.experience}>
+      <div className={classes.experienceArea}>
         <Typography variant="body2" color="primary">
           <FormattedMessage id="experience" />
         </Typography>
@@ -75,7 +75,7 @@ const CandidateCard = ({ candidate }: Props) => {
         </Typography>
       </div>
       {Boolean(orderedTechnologies.length) && (
-        <div className={classes.technologies}>
+        <div className={classes.technologiesArea}>
           {orderedTechnologies.map(({ name, isMainTech }, index) => (
             <TechnologyBadge key={index} name={name} isMainTech={isMainTech} />
           ))}
