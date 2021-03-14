@@ -8,6 +8,9 @@ interface JobModel extends Job, Document {}
 const jobSchema = new BaseSchema({
   city: {
     ...trimmedString,
+  },
+  isRemote: {
+    type: Boolean,
     required: true,
   },
   minExperience: {

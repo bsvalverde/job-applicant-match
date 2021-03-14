@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import TechnologyBadge from '../../components/TechnologyBadge';
+import Chip from '../../components/UI/Chip';
 import Job from '../../types/jobs';
 
 interface Props {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const JobCard = ({ job }: Props) => {
   const classes = useStyles();
 
-  const { city, minExperience, maxExperience, technologies } = job;
+  const { city, isRemote, minExperience, maxExperience, technologies } = job;
 
   let orderedTechnologies = technologies.sort();
 
@@ -48,7 +49,17 @@ const JobCard = ({ job }: Props) => {
         <Typography variant="body2" color="primary">
           <FormattedMessage id="city" />
         </Typography>
-        <Typography>{city}</Typography>
+        <Typography>
+          {city}{' '}
+          {isRemote && (
+            <Chip
+              label={<FormattedMessage id="remote" />}
+              color="secondary"
+              variant="outlined"
+              size="small"
+            />
+          )}
+        </Typography>
       </div>
       <div className={classes.experience}>
         <Typography variant="body2" color="primary">

@@ -1,5 +1,6 @@
 export default interface Job {
   city: string;
+  isRemote: boolean;
   minExperience: number;
   maxExperience: number;
   technologies: string[];
@@ -7,6 +8,7 @@ export default interface Job {
 
 export interface JobQuery {
   city?: string;
+  isRemote?: boolean;
   experience?: number;
   technologies?: string[];
   limit?: number;

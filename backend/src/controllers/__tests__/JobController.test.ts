@@ -14,6 +14,7 @@ describe('controllers.JobController', () => {
   describe('JobController.getQuery', () => {
     const query = {
       city: 'city',
+      isRemote: 'false',
       experience: '12',
       technologies: ['tech'],
       limit: '3',
@@ -22,6 +23,11 @@ describe('controllers.JobController', () => {
     const createRequestWithQuery = (query: any) => {
       return { query } as Request;
     };
+
+    it('Throws an error if isRemote is not a boolean', () => {
+      const request = createRequestWithQuery({ ...query, isRemote: 'f' });
+      expect(() => controller.getQuery(request)).toThrow(BadRequestError);
+    });
 
     it('Throws an error if experience is not a number', () => {
       const request = createRequestWithQuery({ ...query, experience: 'jewel' });
@@ -58,7 +64,12 @@ describe('controllers.JobController', () => {
 
     it('Correctly maps the values to the query object', () => {
       const mappedQuery = controller.getQuery(createRequestWithQuery(query));
-      expect(mappedQuery).toEqual({ ...query, experience: 12, limit: 3 });
+      expect(mappedQuery).toEqual({
+        ...query,
+        isRemote: false,
+        experience: 12,
+        limit: 3,
+      });
     });
 
     it('Returns an empty query if no values are provided', () => {
