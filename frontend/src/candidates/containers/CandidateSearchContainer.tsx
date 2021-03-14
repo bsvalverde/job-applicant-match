@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 import api from '../../api';
 import Candidate from '../../types/candidates';
 import CandidateList from '../components/CandidateList';
@@ -10,9 +11,21 @@ const CandidateSearchContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+
   const methods = useForm({
     mode: 'onBlur',
-    defaultValues: { minExperience: 0, maxExperience: 12 },
+    defaultValues: {
+      city: params.get('city') || '',
+      minExperience: params.get('minExperience')
+        ? +params.get('minExperience')!
+        : 0,
+      maxExperience: params.get('maxExperience')
+        ? +params.get('maxExperience')!
+        : 12,
+      technologies: params.get('technologies')?.split(','),
+    },
   });
   const { handleSubmit } = methods;
 
@@ -24,7 +37,9 @@ const CandidateSearchContainer = () => {
       limit: 5,
     };
     try {
-      const { data: candidates } = await api.get('/candidates/match', { params });
+      const { data: candidates } = await api.get('/candidates/match', {
+        params,
+      });
       setCandidates(candidates);
     } catch (e) {
       setCandidates(null);

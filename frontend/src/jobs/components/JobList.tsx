@@ -6,12 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Job from '../../types/jobs';
-import JobContainer from '../containers/JobContainer';
+import JobCard from './JobCard';
 
 interface Props {
   jobs: Job[];
   loading: boolean;
   error: string;
+  onJobClick: (job: Job) => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -21,9 +22,16 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  jobCard: {
+    cursor: 'pointer',
+    transition: 'box-shadow 0.2s ease-in',
+    '&:hover': {
+      boxShadow: `0 0 5px 3px ${theme.palette.primary.light}`,
+    },
+  },
 }));
 
-const JobList = ({ jobs, loading, error }: Props) => {
+const JobList = ({ jobs, loading, error, onJobClick }: Props) => {
   const classes = useStyles();
 
   if (loading) {
@@ -47,7 +55,15 @@ const JobList = ({ jobs, loading, error }: Props) => {
       </Card>
     );
   } else {
-    content = jobs.map((job) => <JobContainer key={job._id} job={job} />);
+    content = jobs.map((job) => (
+      <Box
+        key={job._id}
+        className={classes.jobCard}
+        onClick={() => onJobClick(job)}
+      >
+        <JobCard job={job} />
+      </Box>
+    ));
   }
 
   return (

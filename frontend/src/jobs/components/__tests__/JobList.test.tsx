@@ -4,7 +4,7 @@ import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import JobContainer from '../../containers/JobContainer';
+import JobCard from '../JobCard';
 import JobList from '../JobList';
 
 configure({ adapter: new Adapter() });
@@ -13,7 +13,9 @@ describe('<JobList />', () => {
   let wrapper: ShallowWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<JobList jobs={[]} loading={false} error={''} />);
+    wrapper = shallow(
+      <JobList jobs={[]} loading={false} error={''} onJobClick={() => {}} />,
+    );
   });
 
   describe('jobs prop', () => {
@@ -28,8 +30,8 @@ describe('<JobList />', () => {
         expect(message.prop('id')).toBe('noJobsToShow');
       });
 
-      it('Should not render a <JobContainer />', () => {
-        expect(wrapper.find(JobContainer).exists()).toBeFalsy();
+      it('Should not render a <JobCard />', () => {
+        expect(wrapper.find(JobCard).exists()).toBeFalsy();
       });
     });
 
@@ -66,8 +68,8 @@ describe('<JobList />', () => {
         expect(wrapper.exists(FormattedMessage)).toBeFalsy();
       });
 
-      it('Should render as many <JobContainer /> components as there are candidates', () => {
-        expect(wrapper.find(JobContainer).length).toBe(3);
+      it('Should render as many <JobCard /> components as there are candidates', () => {
+        expect(wrapper.find(JobCard).length).toBe(3);
       });
     });
   });
