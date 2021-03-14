@@ -40,7 +40,7 @@ const JobList = ({ jobs, loading, error }: Props) => {
     content = (
       <Card>
         <Box p={2}>
-          <Typography align="center">
+          <Typography align="center" color={error ? 'error' : 'initial'}>
             <FormattedMessage id={error || 'noJobsToShow'} />
           </Typography>
         </Box>
