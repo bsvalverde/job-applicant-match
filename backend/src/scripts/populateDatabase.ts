@@ -22,7 +22,8 @@ export default async () => {
     const [minExperience, maxExperience] = experience.split(' ')[0].split('-');
     await MongoJob.create({
       id,
-      city,
+      city: city !== 'Remote' ? city : '',
+      isRemote: city === 'Remote',
       minExperience,
       maxExperience,
       technologies,

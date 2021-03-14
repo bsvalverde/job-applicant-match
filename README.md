@@ -17,6 +17,8 @@ After you have docker, in the main folder, execute:
 
 This will build all the images and start all the containers that are running the app. If the browser is not automatically started, the application can be found on [http://localhost:3000](http://localhost:3000).
 
+The database will be initially empty. Sending a post request to the API on `/api/populateDatabase` will add some dummy data corresponding to the `src/dummyData.ts` file.
+
 ## Testing the application
 
 Both the back-end and the front-end have tests that can be run by executing `npm test` or `yarn test` inside their respective folders.
