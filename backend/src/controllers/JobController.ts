@@ -16,13 +16,20 @@ export default class JobController {
 
   getQuery(req: Request): JobQuery {
     const {
-      query: { city, experience, technologies, limit },
+      query: { city, isRemote, experience, technologies, limit },
     } = req;
 
     const query: JobQuery = {};
 
     if (city) {
       query.city = city as string;
+    }
+
+    if (isRemote) {
+      if (isRemote !== 'false' && isRemote !== 'true') {
+        throw new BadRequestError('isRemote');
+      }
+      query.isRemote = isRemote === 'true';
     }
 
     if (experience) {
