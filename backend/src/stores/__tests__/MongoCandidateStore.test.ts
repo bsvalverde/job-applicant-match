@@ -1,3 +1,4 @@
+import { normalizeString } from '../../utils/stringUtils';
 import MongoCandidateStore from '../MongoCandidateStore';
 
 describe('stores.MongoCandidateStore', () => {
@@ -7,12 +8,14 @@ describe('stores.MongoCandidateStore', () => {
     const city = 'city   ';
     const minExperience = 0;
     const maxExperience = 5;
-    const technology1 = ' tech1 ';
-    const technology2 = '  tech2';
+    const technology1 = ' tECh1 ';
+    const technology2 = '  teCh2';
 
-    it('Returns a filter with the trimmed city in a regex', () => {
+    it('Returns a filter with the normalized city in a regex', () => {
       const filter = store.mapQueryToFilter({ city });
-      expect(filter).toEqual({ city: new RegExp(`^${city.trim()}$`, 'i') });
+      expect(filter).toEqual({
+        city: new RegExp(`^${normalizeString(city)}$`, 'i'),
+      });
     });
 
     it('Returns a filter that requires experience to be at least the minimum', () => {
@@ -25,15 +28,15 @@ describe('stores.MongoCandidateStore', () => {
       expect(filter).toEqual({ experience: { $lte: maxExperience } });
     });
 
-    it('Returns a filter with the trimmed technologies in a regex array', () => {
+    it('Returns a filter with the normalized technologies in a regex array', () => {
       const filter = store.mapQueryToFilter({
         technologies: [technology1, technology2],
       });
       expect(filter).toEqual({
         'technologies.name': {
           $in: [
-            new RegExp(`^${technology1.trim()}$`, 'i'),
-            new RegExp(`^${technology2.trim()}$`, 'i'),
+            new RegExp(`^${normalizeString(technology1)}$`, 'i'),
+            new RegExp(`^${normalizeString(technology2)}$`, 'i'),
           ],
         },
       });

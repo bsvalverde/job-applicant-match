@@ -130,7 +130,7 @@ describe('services.CandidateService', () => {
       expect(score).toBe(0);
     });
 
-    it("Gives a point if the maxExperience is highet than or equal to the candidate's experience", () => {
+    it("Gives a point if the maxExperience is higher than or equal to the candidate's experience", () => {
       const score = service.getScore({
         candidate,
         query: { maxExperience: 4 },

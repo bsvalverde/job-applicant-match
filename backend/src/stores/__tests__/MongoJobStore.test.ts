@@ -10,7 +10,7 @@ describe('stores.MongoJobStore', () => {
     const technology1 = ' tech1 ';
     const technology2 = '  tech2';
 
-    it('Returns a filter with the trimmed city in a regex', () => {
+    it('Returns a filter with the normalized city in a regex', () => {
       const filter = store.mapQueryToFilter({ city });
       expect(filter).toEqual({
         city: new RegExp(`^${normalizeString(city)}$`, 'i'),
@@ -27,7 +27,7 @@ describe('stores.MongoJobStore', () => {
       expect(filter).toHaveProperty('maxExperience', { $gte: experience });
     });
 
-    it('Returns a filter with the trimmed technologies in a regex array', () => {
+    it('Returns a filter with the normalized technologies in a regex array', () => {
       const filter = store.mapQueryToFilter({
         technologies: [technology1, technology2],
       });
