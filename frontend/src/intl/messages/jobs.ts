@@ -5,9 +5,13 @@ const messages = {
   noJobsToShow: {
     pt: 'Nenhuma vaga encontrada',
   },
+  remote: {
+    pt: 'Remoto',
+  },
   experienceRange: {
-    pt: '{minExperience}-{maxExperience} {maxExperience, plural, =1 {ano} other {anos}}',
-  }
+    pt:
+      '{minExperience}-{maxExperience} {maxExperience, plural, =1 {ano} other {anos}}',
+  },
 };
 
 export default messages;

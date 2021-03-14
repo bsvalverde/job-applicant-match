@@ -1,8 +1,8 @@
-import Chip from '@material-ui/core/Chip';
 import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import TechnologyBadge from '../TechnologyBadge';
+import Chip from '../UI/Chip';
 
 configure({ adapter: new Adapter() });
 
