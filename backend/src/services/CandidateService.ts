@@ -52,10 +52,9 @@ export default class CandidateService {
     }
 
     if (technologies) {
-      const techArray = (Array.isArray(technologies)
-        ? technologies
-        : [technologies]
-      ).map((technology) => normalizeString(technology));
+      const techArray = technologies.map((technology) =>
+        normalizeString(technology),
+      );
       candidate.technologies.forEach(({ name, isMainTech }) => {
         if (techArray.includes(normalizeString(name))) {
           score += 1;

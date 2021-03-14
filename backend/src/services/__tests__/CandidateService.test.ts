@@ -8,28 +8,21 @@ describe('services.CandidateService', () => {
   const service = new CandidateService({ store });
 
   describe('CandidateService.list', () => {
+    const query = {
+      city: 'city',
+      minExperience: 11,
+      technologies: ['tech'],
+      limit: 3,
+    };
+
     beforeEach(() => {
       jest.clearAllMocks();
       (store.list as jest.Mock).mockReturnValueOnce([]);
     });
 
     it('Calls store.list with the correct parameters', () => {
-      const city = 'city';
-      const technologies = 'tech';
-      const minExperience = 11;
-      const limit = 3;
-      service.list({
-        city,
-        technologies,
-        minExperience,
-        limit,
-      });
-      expect(store.list).toHaveBeenCalledWith({
-        city,
-        technologies,
-        minExperience,
-        limit,
-      });
+      service.list(query);
+      expect(store.list).toHaveBeenCalledWith(query);
     });
   });
 
@@ -156,7 +149,7 @@ describe('services.CandidateService', () => {
     it('Gives a point for each non main technology the candidate knows', () => {
       const score = service.getScore({
         candidate,
-        query: { technologies: 'tech3 ' },
+        query: { technologies: ['tech3 '] },
       });
       expect(score).toBe(1);
     });

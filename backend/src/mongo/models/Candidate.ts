@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import Candidate from '../../types/candidates';
 import BaseSchema from './BaseSchema';
-import { trimmedString } from './commonSchemas';
+import { experience, trimmedString } from './commonSchemas';
 
 interface CandidateModel extends Candidate, Document {}
 
@@ -26,9 +26,7 @@ const candidateSchema = new BaseSchema({
     required: true,
   },
   experience: {
-    type: Number,
-    min: 0,
-    max: 12,
+    ...experience,
     required: true,
   },
   technologies: {

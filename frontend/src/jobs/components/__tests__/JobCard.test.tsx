@@ -2,32 +2,29 @@ import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import TechnologyBadge from '../../../components/TechnologyBadge';
-import CandidateCard from '../CandidateCard';
+import JobCard from '../JobCard';
 
 configure({ adapter: new Adapter() });
 
-describe('<CandidateCard />', () => {
+describe('<JobCard />', () => {
   let wrapper: ShallowWrapper;
-  const candidate = {
+  const job = {
     _id: '1',
     city: 'city1',
-    experience: 2,
+    minExperience: 2,
+    maxExperience: 4,
     technologies: [],
   };
-  const technologies = [
-    { name: 'tech1', isMainTech: true },
-    { name: 'tech2', isMainTech: false },
-    { name: 'tech1', isMainTech: false },
-  ];
+  const technologies = ['tech1', 'tech2', 'tech1'];
 
   beforeEach(() => {
-    wrapper = shallow(<CandidateCard candidate={candidate} />);
+    wrapper = shallow(<JobCard job={job} />);
   });
 
-  describe('candidate prop', () => {
+  describe('job prop', () => {
     describe('Has no associated technologies', () => {
       beforeEach(() => {
-        wrapper.setProps({ candidate });
+        wrapper.setProps({ job });
       });
 
       it('Should not render a <TechnologyBadge />', () => {
@@ -38,7 +35,7 @@ describe('<CandidateCard />', () => {
     describe('Has associated technologies', () => {
       beforeEach(() => {
         wrapper.setProps({
-          candidate: { ...candidate, technologies },
+          job: { ...job, technologies },
         });
       });
 
