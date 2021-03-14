@@ -10,6 +10,10 @@ const jobSchema = new BaseSchema({
     ...trimmedString,
     required: true,
   },
+  remote: {
+    type: Boolean,
+    required: true,
+  },
   minExperience: {
     ...experience,
     required: true,
