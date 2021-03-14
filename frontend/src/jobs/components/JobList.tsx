@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Job from '../../types/jobs';
+import JobContainer from '../containers/JobContainer';
 
 interface Props {
   jobs: Job[];
@@ -40,13 +41,13 @@ const JobList = ({ jobs, loading, error }: Props) => {
       <Card>
         <Box p={2}>
           <Typography align="center">
-            <FormattedMessage id={error || "noJobsToShow"} />
+            <FormattedMessage id={error || 'noJobsToShow'} />
           </Typography>
         </Box>
       </Card>
     );
   } else {
-    content = jobs.map((job) => <p>job</p>);
+    content = jobs.map((job) => <JobContainer key={job._id} job={job} />);
   }
 
   return (

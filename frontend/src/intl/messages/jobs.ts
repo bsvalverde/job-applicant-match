@@ -5,6 +5,9 @@ const messages = {
   noJobsToShow: {
     pt: 'Nenhuma vaga encontrada',
   },
+  experienceRange: {
+    pt: '{minExperience}-{maxExperience} {maxExperience, plural, =1 {ano} other {anos}}',
+  }
 };
 
 export default messages;

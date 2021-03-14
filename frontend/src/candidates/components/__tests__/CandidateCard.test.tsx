@@ -1,8 +1,8 @@
 import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
+import TechnologyBadge from '../../../components/TechnologyBadge';
 import CandidateCard from '../CandidateCard';
-import TechnologyBadge from '../TechnologyBadge';
 
 configure({ adapter: new Adapter() });
 

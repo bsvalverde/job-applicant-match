@@ -4,7 +4,7 @@ import React from 'react';
 
 interface Props {
   name: string;
-  isMainTech: boolean;
+  isMainTech?: boolean;
 }
 
 const useStyles = makeStyles(() => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const TechnologyBadge = ({ name, isMainTech }: Props) => {
+const TechnologyBadge = ({ name, isMainTech = false }: Props) => {
   const classes = useStyles();
 
   return (

@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import TechnologyBadge from '../../components/TechnologyBadge';
-import Candidate from '../../types/candidates';
+import Job from '../../types/jobs';
 
 interface Props {
-  candidate: Candidate;
+  job: Job;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -35,25 +35,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CandidateCard = ({ candidate }: Props) => {
+const JobCard = ({ job }: Props) => {
   const classes = useStyles();
 
-  const { city, experience, technologies } = candidate;
+  const { city, minExperience, maxExperience, technologies } = job;
 
-  let orderedTechnologies = technologies.sort((a, b) => {
-    if (a.isMainTech !== b.isMainTech) {
-      return (b.isMainTech ? 1 : 0) - (a.isMainTech ? 1 : 0);
-    }
-    if (a.name > b.name) {
-      return 1;
-    } else if (a.name < b.name) {
-      return -1;
-    }
-    return 0;
-  });
-
-  const experienceValue =
-    experience === 12 ? '12+' : `${experience}-${experience + 1}`;
+  let orderedTechnologies = technologies.sort();
 
   return (
     <Card className={classes.root}>
@@ -69,15 +56,15 @@ const CandidateCard = ({ candidate }: Props) => {
         </Typography>
         <Typography>
           <FormattedMessage
-            id={'experienceValue'}
-            values={{ value: experience, stringValue: experienceValue }}
+            id={'experienceRange'}
+            values={{ minExperience, maxExperience }}
           />
         </Typography>
       </div>
       {Boolean(orderedTechnologies.length) && (
         <div className={classes.technologies}>
-          {orderedTechnologies.map(({ name, isMainTech }, index) => (
-            <TechnologyBadge key={index} name={name} isMainTech={isMainTech} />
+          {orderedTechnologies.map((technology, index) => (
+            <TechnologyBadge key={index} name={technology} />
           ))}
         </div>
       )}
@@ -85,4 +72,4 @@ const CandidateCard = ({ candidate }: Props) => {
   );
 };
 
-export default CandidateCard;
+export default JobCard;
