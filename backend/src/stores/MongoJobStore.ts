@@ -13,7 +13,7 @@ export default class MongoJobStore implements JobStore {
 
   mapQueryToFilter({
     city,
-    remote,
+    isRemote,
     experience,
     technologies,
   }: JobQuery): FilterQuery<Job> {
@@ -23,8 +23,8 @@ export default class MongoJobStore implements JobStore {
       filter.city = new RegExp(`^${normalizeString(city)}$`, 'i');
     }
 
-    if (typeof remote === 'boolean') {
-      filter.remote = remote;
+    if (typeof isRemote === 'boolean') {
+      filter.isRemote = isRemote;
     }
 
     if (Number.isInteger(experience)) {

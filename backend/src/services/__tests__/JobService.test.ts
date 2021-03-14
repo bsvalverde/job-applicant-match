@@ -10,6 +10,7 @@ describe('services.JobService', () => {
   describe('JobService.list', () => {
     const query = {
       city: 'city',
+      isRemote: false,
       experience: 11,
       technologies: ['tech'],
       limit: 3,

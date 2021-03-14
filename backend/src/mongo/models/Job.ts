@@ -10,7 +10,7 @@ const jobSchema = new BaseSchema({
     ...trimmedString,
     required: true,
   },
-  remote: {
+  isRemote: {
     type: Boolean,
     required: true,
   },
