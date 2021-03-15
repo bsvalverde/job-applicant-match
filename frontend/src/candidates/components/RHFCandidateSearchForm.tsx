@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: theme.spacing(90),
     padding: theme.spacing(2),
+    overflow: 'visible',
   },
   form: {
     display: 'grid',
@@ -122,6 +123,13 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
               classes={{ select: classes.select }}
               value={value}
               onChange={onChange}
+              MenuProps={{
+                getContentAnchorEl: null,
+                anchorOrigin: { horizontal: 'center', vertical: 'bottom' },
+                transformOrigin: { horizontal: 'center', vertical: 'top' },
+                transitionDuration: 0,
+                style: { maxHeight: 400 },
+              }}
             >
               <MenuItem value="">
                 <FormattedMessage id="cityField" />

@@ -29,8 +29,11 @@ const MultiSelect = (props: Props) => {
     menu: (provided: any) => ({
       ...provided,
       borderRadius: 0,
+      border: 'none',
       fontFamily: theme.typography.fontFamily,
       zIndex: 2,
+      boxShadow: theme.shadows[8],
+      maxHeight: 400,
     }),
     multiValue: (provided: any) => ({
       ...provided,
@@ -52,6 +55,13 @@ const MultiSelect = (props: Props) => {
         color: theme.palette.primary.dark,
       },
     }),
+    option: (provided: any) => ({
+      ...provided,
+      backgroundColor: 'transparent',
+      '&:hover': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    }),
     placeholder: (provided: any) => ({
       ...provided,
       fontFamily: theme.typography.fontFamily,
@@ -59,12 +69,7 @@ const MultiSelect = (props: Props) => {
     }),
   };
 
-  return (
-    <Select
-      {...props}
-      styles={customStyles}
-    />
-  );
+  return <Select {...props} styles={customStyles} />;
 };
 
 export default MultiSelect;
