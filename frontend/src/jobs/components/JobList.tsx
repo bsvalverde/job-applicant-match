@@ -37,7 +37,7 @@ const JobList = ({ jobs, loading, error, onJobClick }: Props) => {
   if (loading) {
     return (
       <Box display="flex" flex={1} justifyContent="center" alignItems="center">
-        <CircularProgress />;
+        <CircularProgress />
       </Box>
     );
   }
