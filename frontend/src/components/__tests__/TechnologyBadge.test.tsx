@@ -19,7 +19,7 @@ describe('<TechnologyBadge />', () => {
         wrapper.setProps({ isMainTech: true });
       });
 
-      it('Should render a filled chip', () => {
+      it('Should render a filled <Chip />', () => {
         expect(wrapper.find(Chip).prop('variant')).toBe('default');
       });
     });
@@ -29,7 +29,7 @@ describe('<TechnologyBadge />', () => {
         wrapper.setProps({ isMainTech: false });
       });
 
-      it('Should render an outlined chip', () => {
+      it('Should render an outlined <Chip />', () => {
         expect(wrapper.find(Chip).prop('variant')).toBe('outlined');
       });
     });

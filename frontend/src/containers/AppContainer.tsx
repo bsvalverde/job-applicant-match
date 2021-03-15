@@ -1,12 +1,12 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageContainer from '../containers/PageContainer';
 import RoutesContainer from './RoutesContainer';
 
 const AppContainer = () => {
   return (
-    <PageLayout>
+    <PageContainer>
       <RoutesContainer />
-    </PageLayout>
+    </PageContainer>
   );
 };
 
