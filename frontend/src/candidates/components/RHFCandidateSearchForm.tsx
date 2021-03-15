@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       gridColumn: 'span 5',
     },
-    marginLeft: 'auto',
   },
   technologyField: {
     [theme.breakpoints.up('md')]: {
@@ -196,7 +195,7 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
             />
           </Box>
         </Box>
-        <Box className={classes.submitButton}>
+        <Box className={classes.submitButton} ml="auto">
           {loading ? (
             <CircularProgress color="primary" size={44} />
           ) : (
