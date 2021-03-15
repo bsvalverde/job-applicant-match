@@ -30,8 +30,11 @@ const useStyles = makeStyles((theme) => ({
   technologiesArea: {
     gridArea: 'technologies',
     display: 'flex',
-    gap: `${theme.spacing(1)}px`,
     flexWrap: 'wrap',
+    margin: `${-theme.spacing(1)}px 0 0 ${-theme.spacing(1)}px`,
+    '& > *': {
+      margin: `${theme.spacing(1)}px 0 0 ${theme.spacing(1)}px`,
+    },
   },
 }));
 

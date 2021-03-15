@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: theme.spacing(90),
     padding: theme.spacing(2),
+    overflow: 'visible',
   },
   form: {
     display: 'grid',
@@ -70,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       gridColumn: 'span 5',
     },
-    marginLeft: 'auto',
   },
   technologyField: {
     [theme.breakpoints.up('md')]: {
@@ -122,6 +122,13 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
               classes={{ select: classes.select }}
               value={value}
               onChange={onChange}
+              MenuProps={{
+                getContentAnchorEl: null,
+                anchorOrigin: { horizontal: 'center', vertical: 'bottom' },
+                transformOrigin: { horizontal: 'center', vertical: 'top' },
+                transitionDuration: 0,
+                style: { maxHeight: 400 },
+              }}
             >
               <MenuItem value="">
                 <FormattedMessage id="cityField" />
@@ -188,7 +195,7 @@ const RHFCandidateSearchForm = ({ error, loading, onSubmit }: Props) => {
             />
           </Box>
         </Box>
-        <Box className={classes.submitButton}>
+        <Box className={classes.submitButton} ml="auto">
           {loading ? (
             <CircularProgress color="primary" size={44} />
           ) : (

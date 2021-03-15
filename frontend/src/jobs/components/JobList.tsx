@@ -56,13 +56,13 @@ const JobList = ({ jobs, loading, error, onJobClick }: Props) => {
     );
   } else {
     content = jobs.map((job) => (
-      <Box
+      <div
         key={job._id}
         className={classes.jobCard}
         onClick={() => onJobClick(job)}
       >
         <JobCard job={job} />
-      </Box>
+      </div>
     ));
   }
 

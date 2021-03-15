@@ -1,6 +1,9 @@
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import TechnologyBadge from '../../components/TechnologyBadge';
@@ -15,12 +18,28 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
     display: 'grid',
+    gridTemplateColumns: '1fr',
     gridTemplateAreas: `
-      "city experience"
-      "technologies technologies"
+      "city"
+      "experience"
+      "technologies"
+      "button"
     `,
-    gridTemplateColumns: '1fr 1fr',
     gap: `${theme.spacing(1)}px`,
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateAreas: `
+        "city experience"
+        "technologies technologies"
+        "button button"
+      `,
+    },
+  },
+  button: {
+    gridArea: 'button',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
   city: {
     '& > :not(:last-child)': {
@@ -35,9 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
   technologiesArea: {
     gridArea: 'technologies',
-    display: 'flex',
-    gap: `${theme.spacing(1)}px`,
-    flexWrap: 'wrap',
+    margin: `${-theme.spacing(1)}px 0 0 ${-theme.spacing(1)}px`,
+    '& > *': {
+      margin: `${theme.spacing(1)}px 0 0 ${theme.spacing(1)}px`,
+    },
   },
 }));
 
@@ -78,12 +98,21 @@ const JobCard = ({ job }: Props) => {
         </Typography>
       </div>
       {Boolean(orderedTechnologies.length) && (
-        <div className={classes.technologiesArea}>
+        <Box
+          className={classes.technologiesArea}
+          display="flex"
+          flexWrap="wrap"
+        >
           {orderedTechnologies.map((technology, index) => (
             <TechnologyBadge key={index} name={technology} />
           ))}
-        </div>
+        </Box>
       )}
+      <Box className={classes.button} ml="auto">
+        <IconButton>
+          <SearchIcon />
+        </IconButton>
+      </Box>
     </Card>
   );
 };

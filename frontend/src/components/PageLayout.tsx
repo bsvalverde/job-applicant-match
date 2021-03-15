@@ -1,11 +1,13 @@
 import Box from '@material-ui/core/Box';
+import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import NavigationMenu from './NavigationMenu';
 
 interface Props {
+  isDrawerOpen: boolean;
+  toggleDrawer: () => void;
   children: React.ReactNode;
 }
 
@@ -21,51 +23,45 @@ const useStyles = makeStyles((theme) => ({
     textIndent: '100%',
     overflow: 'hidden',
   },
-  link: {
-    fontWeight: 'bold',
-    color: 'inherit',
-    textDecoration: 'none',
-    paddingTop: theme.spacing(0.5),
-    '&:hover': {
-      borderTop: [[1, 'solid', theme.palette.secondary.main]],
+  menuButton: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
   },
   nav: {
-    '& > *:not(:first-child)': {
-      marginLeft: theme.spacing(1.5),
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
   },
 }));
 
-const PageLayout = ({ children }: Props) => {
+const PageLayout = ({ isDrawerOpen, toggleDrawer, children }: Props) => {
   const classes = useStyles();
 
   return (
     <Box minHeight="100vh" display="flex" flexDirection="column">
+      <Drawer open={isDrawerOpen} anchor="right" onClose={toggleDrawer}>
+        <Box p={2} bgcolor="primary.main" height="100%">
+          <NavigationMenu />
+        </Box>
+      </Drawer>
       <Box
         display="flex"
         justifyContent="space-between"
+        alignItems="center"
         bgcolor="primary.main"
         p={2}
       >
         <div className={classes.logo}>Logo</div>
-        <Box
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-          className={classes.nav}
-        >
-          <Typography variant="body2" color="secondary">
-            <Link to="/jobs" className={classes.link}>
-              <FormattedMessage id="jobs" />
-            </Link>
-          </Typography>
-          <Typography variant="body2" color="secondary">
-            <Link to="/candidates" className={classes.link}>
-              <FormattedMessage id="candidates" />
-            </Link>
-          </Typography>
-        </Box>
+        <MenuIcon
+          className={classes.menuButton}
+          color="secondary"
+          onClick={toggleDrawer}
+        />
+        <div className={classes.nav}>
+          <NavigationMenu />
+        </div>
       </Box>
       <Box
         flex={1}
