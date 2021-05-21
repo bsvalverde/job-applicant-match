@@ -13,8 +13,7 @@ interface Props {
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    backgroundImage:
-      'url(https://d4zjpv0aa4kr2.cloudfront.net/assets/logos/geekhunter-inverse-106299cc99e0a518961a226a1d0b53099cfa6b329f0852524bcabd760aafa6f0.svg)',
+    backgroundImage: 'none',
     backgroundRepeat: 'no-repeat',
     backgroundPositionX: 'center',
     backgroundPositionY: 'center',
